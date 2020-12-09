@@ -8,11 +8,16 @@ RSpec.describe User, type: :model do
   # describe User do
     # columns: session_token, password_digest, username
     it { should validate_presence_of(:username) }
-    it { should validate_uniqueness_of(:username) }
     it { should validate_presence_of(:password_digest) }
     it { should validate_presence_of(:session_token) }
+    # end
+  describe "uniqueness" do
+    before(:each) do
+      create(:user)
+    end
+    it { should validate_uniqueness_of(:username) }
     it { should validate_uniqueness_of(:session_token) }
-  # end
+  end
 
   # class scope methods; find_by_credentials
 
